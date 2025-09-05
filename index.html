@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>食物對對碰｜營養午餐小遊戲</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <header class="wrap">
+    <h1>🍎 食物對對碰｜營養午餐小遊戲</h1>
+    <p class="sub">選擇對數 → 按開始 → 在時間內把所有牌配對成功！</p>
+  </header>
+
+  <section class="wrap controls">
+    <div class="modes">
+      <button class="mode-btn" data-pairs="8">8 對（入門）</button>
+      <button class="mode-btn" data-pairs="12">12 對（進階）</button>
+      <button class="mode-btn" data-pairs="20">20 對（高手）</button>
+    </div>
+    <div class="actions">
+      <button id="startBtn">開始遊戲</button>
+      <button id="restartBtn" disabled>重新開始</button>
+    </div>
+    <div class="stats">
+      <div>⏳ 時間剩餘：<span id="timeText">--</span></div>
+      <div>🧩 已配對：<span id="matchedText">0</span>/<span id="totalPairsText">--</span></div>
+      <div>👣 步數：<span id="movesText">0</span></div>
+    </div>
+    <div class="timebar">
+      <div id="timeBarFill"></div>
+    </div>
+  </section>
+
+  <main class="wrap">
+    <div id="board" class="board" aria-label="對對碰遊戲區"></div>
+  </main>
+
+  <div id="toast" class="toast" role="alert" aria-live="assertive"></div>
+
+  <script src="script.js"></script>
+</body>
+</html>
