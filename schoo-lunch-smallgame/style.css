@@ -1,0 +1,66 @@
+:root{
+  --ink:#1f2937;
+  --muted:#6b7280;
+  --bg:#f8fafc;
+  --card:#ffffff;
+  --line:#e5e7eb;
+  --accent:#16a34a;
+  --danger:#ef4444;
+}
+
+*{box-sizing:border-box}
+html,body{margin:0;background:var(--bg);color:var(--ink);font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"Noto Sans TC",Arial}
+.wrap{max-width:980px;margin:0 auto;padding:14px}
+
+h1{margin:8px 0 2px}
+.sub{margin:0 0 10px;color:var(--muted)}
+
+.controls{
+  display:grid;gap:10px;
+  grid-template-columns:1fr;align-items:center
+}
+@media(min-width:720px){
+  .controls{grid-template-columns: 1.2fr 0.9fr 1.2fr 1fr}
+}
+
+.modes,.actions,.stats{display:flex;gap:8px;align-items:center;flex-wrap:wrap}
+button{
+  border:1px solid var(--line);background:var(--card);padding:10px 14px;border-radius:12px;
+  cursor:pointer;font-size:15px;box-shadow:0 2px 6px rgba(0,0,0,.05)
+}
+button[disabled]{opacity:.5;cursor:not-allowed}
+.mode-btn.active{border-color:var(--accent);outline:2px solid rgba(22,163,74,.25)}
+
+.timebar{width:100%;height:10px;background:#e9eef5;border-radius:999px;overflow:hidden}
+#timeBarFill{height:100%;width:0;background:linear-gradient(90deg,#22c55e,#16a34a);transition:width .25s}
+
+.board{
+  display:grid;gap:10px;margin:16px 0 30px;
+  /* columns will be set by JS depending on pair count */
+}
+.card{
+  position:relative; width:100%; aspect-ratio: 3/4; border-radius:14px;
+  perspective:1000px; user-select:none;
+}
+.card-inner{
+  position:absolute; inset:0; border-radius:14px; transform-style:preserve-3d;
+  transition: transform .35s ease;
+}
+.card.flipped .card-inner{ transform: rotateY(180deg); }
+.face{
+  position:absolute; inset:0; display:grid; place-items:center;
+  border-radius:14px; backface-visibility:hidden; border:1px solid var(--line);
+}
+.front{ background:var(--card); transform: rotateY(180deg); font-size:40px }
+.back{ background:#dbeafe; color:#1e3a8a; font-weight:700 }
+
+.card.matched .front{ background:#dcfce7; border-color:#bbf7d0 }
+.card.locked{ pointer-events:none; }
+
+.toast{
+  position:fixed; left:50%; bottom:24px; transform:translateX(-50%);
+  background:var(--card); border:1px solid var(--line); padding:10px 14px; border-radius:12px;
+  opacity:0; transition: opacity .25s, transform .25s; box-shadow:0 8px 24px rgba(0,0,0,.12);
+  pointer-events:none; font-weight:600;
+}
+.toast.show{ opacity:1; transform:translateX(-50%) translateY(-6px) }
